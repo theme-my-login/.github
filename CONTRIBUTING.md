@@ -32,7 +32,7 @@ Allowed types:
 
 **A distribution-listing-only change is always `chore`, even when user-facing** (e.g. correcting the `Tags`/`License` fields or `Tested up to` in a WordPress.org `readme.txt`, where this repo has one). That file deploys independently of the plugin/extension build, so it doesn't need a version bump to reach users.
 
-**Branch names should be prefixed with the same type**, e.g. `fix/nonce-check-on-favorites-widget`, `feat/passwordless-login`, `chore/bump-cssnano`.
+**Branch names are conventionally prefixed with the same type**, e.g. `fix/nonce-check-on-favorites-widget`, `feat/passwordless-login`, `chore/bump-cssnano`. This one is a readability nicety, not a rule: nothing reads the branch name, a branch carrying commits of more than one type has no single correct prefix, and the branch is deleted on merge anyway. **Don't request changes on a pull request over it** — renaming a branch closes its pull request rather than retargeting it, so the correction costs a replacement PR and another round of CI for no functional gain.
 
 ### Squashing
 
