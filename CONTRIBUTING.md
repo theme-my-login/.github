@@ -69,6 +69,8 @@ Release-Note: Prevent site crash on Bluehost during password reset.
 
 Without that script, there's no override — the subject alone is what ships to users, so it has to clear the bar on its own.
 
+With that script, `Release-Note: none` leaves a commit out of the changelog entirely while it still bumps the version. Use it for a real user-facing change that isn't worth announcing, such as a promotional notice. Keep the honest type (`feat`, not `chore`) rather than retyping the commit to hide it.
+
 If a change is purely internal (refactor, test coverage, tooling), it should be `chore`/`refactor`/`test`, not a reworded `fix`.
 
 ## PR mechanics
