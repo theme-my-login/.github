@@ -1,0 +1,10 @@
+name: Lint commits
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+    branches: [main]
+
+jobs:
+  lint-commits:
+    uses: theme-my-login/tml-workflows/.github/workflows/lint-commits.yml@main

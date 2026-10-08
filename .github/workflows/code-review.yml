@@ -1,0 +1,10 @@
+name: Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+jobs:
+  review:
+    uses: theme-my-login/tml-workflows/.github/workflows/code-review.yml@main
+    secrets: inherit
