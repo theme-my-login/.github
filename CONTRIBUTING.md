@@ -30,6 +30,8 @@ Allowed types:
 
 **`fix` is reserved for user-facing bug fixes.** A change that fixes a bug in internal tooling, scripts, CI, or build config is `chore`/`refactor`/`test`/`ci`, not `fix`, even though it "fixes" something — check the file path (anything under `.github/workflows/`, CI config, build tooling) against this before typing the type.
 
+**`feat` vs `fix` goes by what a user sees, not by whether the diff adds code.** If something that used to go wrong or look broken no longer does, it's `fix`, even when the fix adds new mechanism. If users can now do something they couldn't, including an existing behavior brought to a place it never existed, or output that already worked is redesigned, it's `feat`. Both ship in the changelog, so a mistype shows up only as the wrong version bump.
+
 **A distribution-listing-only change is always `chore`, even when user-facing** (e.g. correcting the `Tags`/`License` fields or `Tested up to` in a WordPress.org `readme.txt`, where this repo has one). That file deploys independently of the plugin/extension build, so it doesn't need a version bump to reach users.
 
 **Branch names are conventionally prefixed with the same type**, e.g. `fix/nonce-check-on-favorites-widget`, `feat/passwordless-login`, `chore/bump-cssnano`. This one is a readability nicety, not a rule: nothing reads the branch name, a branch carrying commits of more than one type has no single correct prefix, and the branch is deleted on merge anyway. **Don't request changes on a pull request over it** — renaming a branch closes its pull request rather than retargeting it, so the correction costs a replacement PR and another round of CI for no functional gain.
@@ -42,7 +44,7 @@ Before opening a PR, squash commits that are really incremental edits to the sam
 
 A major bump isn't manual — it's the same commit-driven mechanism as `feat`/`fix`, just marked as breaking. Either:
 
-- Add `!` after the type/scope: `feat!: drop support for PHP 7.4`
+- Add `!` after the type/scope: `feat!: remove the deprecated login widget`
 - Or add a `BREAKING CHANGE:` footer to the commit body (any type):
 
 ```
@@ -50,6 +52,8 @@ fix!: remove deprecated helper in favor of its replacement
 
 BREAKING CHANGE: the deprecated helper has been removed; use its replacement instead.
 ```
+
+**Raising the minimum PHP or WordPress version is not breaking.** It's a plain `feat`, released in a minor, never a patch. WordPress won't offer the update to a site below the new minimum, so no site breaks.
 
 To force a specific version regardless of what the commits would otherwise compute (e.g. a deliberate version jump), add a `Release-As: X.Y.Z` footer to any commit.
 
